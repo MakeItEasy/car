@@ -34,7 +34,7 @@ ActiveAdmin.register Post do
     f.inputs "文章详细" do
       f.input :catagory
       f.input :title
-      f.input :content
+      f.input :content, as: :ckeditor
     end
     f.actions
   end
@@ -74,7 +74,13 @@ ActiveAdmin.register Post do
       end
     end
 
-    div post.content
+    # div sanitize(post.content, attributes: %w(id class style))
+    div class: 'panel' do
+      h3 Post.human_attribute_name(:content)
+      div class: 'panel_contents', style: 'padding:10px' do
+        post.content.html_safe
+      end
+    end
   end
 
   # 编辑完成Action
