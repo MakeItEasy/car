@@ -1,0 +1,20 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+1:
+  id: 1
+  email: admin@car.com
+  name: 代如刚
+  encrypted_password: <%= Admin.new.send(:password_digest, "password") %>
+  telephone: 13100000000
+2:
+  id: 2
+  email: moderator@car.com
+  name: 张喆
+  encrypted_password: <%= Admin.new.send(:password_digest, "password") %>
+  telephone: 14100000000
+3:
+  id: 3
+  email: editor@car.com
+  name: 张磊
+  encrypted_password: <%= Admin.new.send(:password_digest, "password") %>
+  telephone: 15100000000

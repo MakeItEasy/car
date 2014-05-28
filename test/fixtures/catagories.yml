@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+1:
+  id: 1
+  name: 车检知识
+  order: 1
+
+2:
+  id: 2
+  name: 车检流程
+  order: 2

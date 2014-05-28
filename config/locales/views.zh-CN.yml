@@ -1,0 +1,15 @@
+'zh-CN':
+  views:
+    action:
+      publish: 发布
+      reject: 拒绝
+      complete: 完成
+    notice:
+      post:
+        published: 文章发布成功.
+        completed: 文章已经提交,等待审核.
+        rejected: 文章已经拒绝成功.
+        locked: 文章已经锁定成功.
+    alert:
+      post:
+        status_error: 当前文章状态下不能完成此操作!
