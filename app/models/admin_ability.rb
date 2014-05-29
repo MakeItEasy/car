@@ -46,6 +46,9 @@ class AdminAbility
         can :publish, Post, :status => "waiting"
         can :reject, Post, :status => "waiting"
         can :lock, Post, :status => "published"
+        # 可以删除附件以及图片
+        can :destroy, Ckeditor::Picture
+        can :destroy, Ckeditor::AttachmentFile
       end
       if user.is_editor?
         # 编辑
@@ -54,8 +57,17 @@ class AdminAbility
         can :create, Post
         can :update, Post, :create_user_id => user.id
         can :complete, Post, :create_user_id => user.id, :status => "draft"
+        can :read, Ckeditor::Picture
+        can :create, Ckeditor::Picture
       end
     end
+
+    ### CkEditor相关权限
+    # Always performed
+    can :access, :ckeditor   # needed to access Ckeditor filebrowser
+    # Performed checks for actions:
+    can [:read, :create], Ckeditor::Picture
+    can [:read, :create], Ckeditor::AttachmentFile
 
     can :show, Admin, :id => user.id
     can :update, Admin, :id => user.id

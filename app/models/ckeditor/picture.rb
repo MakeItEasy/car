@@ -1,0 +1,20 @@
+class Ckeditor::Picture < Ckeditor::Asset
+  has_attached_file :data,
+                    :url  => "/ckeditor_assets/pictures/:id/:style_:basename.:extension",
+                    :path => ":rails_root/public/ckeditor_assets/pictures/:id/:style_:basename.:extension",
+                    :styles => { :content => '800>', :thumb => '118x100#' }
+
+  validates_attachment_presence :data
+  validates_attachment_size :data, :less_than => 3.megabytes
+  # validates_attachment_size :data, :less_than => 3.kilobytes
+  validates_attachment_content_type :data, :content_type => /\Aimage/
+
+  # TODO dairg error message I18n
+  # TODO dairg 只要修改这个文件，哪怕是添加注视，浏览服务器 按钮就会报权限错误，只要重启服务器即可
+  # TODO dairg size javascript check
+  # 因为在ckeditor的application Controller中的方法中，如果失败的话，返回nothing
+
+  def url_content
+    url(:content)
+  end
+end

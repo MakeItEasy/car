@@ -49,3 +49,6 @@ gem 'rails-i18n', '~> 4.0.0'
 gem 'enumerize'
 
 gem 'ckeditor'
+
+gem "paperclip", "~> 4.1"
+gem 'activesupport-json_encoder'

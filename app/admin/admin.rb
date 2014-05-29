@@ -22,6 +22,7 @@ ActiveAdmin.register Admin do
       f.input :telephone
       # f.input :password
       # f.input :password_confirmation
+      # TODO dairg 管理员角色显示汉字
       f.input :roles
     end
     f.actions

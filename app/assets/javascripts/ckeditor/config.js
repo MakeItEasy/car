@@ -37,7 +37,6 @@ CKEDITOR.editorConfig = function( config )
     ['Link','Unlink','Anchor','-', 'Image', 'Table', 'HorizontalRule'],
     ['Format','FontSize'],
     ['TextColor','BGColor']
-
   ];
 
   // config.toolbar = 'Basic';
