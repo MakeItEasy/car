@@ -24,5 +24,7 @@ module Car
     # config.i18n.default_locale = :de
     config.i18n.default_locale = 'zh-CN'
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+
+    config.assets.precompile += ['front.js', 'front.css']
   end
 end

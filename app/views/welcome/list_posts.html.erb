@@ -1,0 +1,47 @@
+
+    <style>
+      #main-content {
+        margin-top: 50px;
+        text-align: left;
+      }
+    </style>
+
+    <div id="main-content" class="container marketing wrapped-content">
+
+      <div class="row">
+        <div class="col-md-2">
+          <div class="bs-sidebar hidden-print affix" role="complementary">
+            <ul class="nav bs-sidenav">
+            <% @catagories.each do |catagory|  %>
+              <li class="<%= catagory.id == @catagory.id ? 'active' : ''%>">
+                <%= link_to catagory.name, catagory_path(catagory) %>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div><!-- /.col -->
+
+        <div class="col-md-10">
+          <div class="info-list">
+            <div id="info1" class="panel panel-info">
+              <div class="panel-heading">车检知识1</div>
+              <div class="panel-body">
+                车检知识1<br>
+                车检知识1<br>
+                车检知识1<br>
+                车检知识1<br>
+                车检知识1<br>
+                车检知识1<br>
+                车检知识1<br>
+                车检知识1<br>
+                车检知识1<br>
+                车检知识1<br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.row -->
+
+      <div class="clearfix"></div>
+      <hr class="featurette-divider">
+
