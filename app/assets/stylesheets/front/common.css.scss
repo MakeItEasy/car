@@ -9,10 +9,6 @@
   text-align: center;
 }
 
-.clearfix {
-  clear: both;
-}
-
 .big-nav-icon-info {
   display: inline-block;
   background: url('weixiu.png') no-repeat transparent;
@@ -142,7 +138,7 @@
   /* Widen the fixed sidebar */
   .bs-sidebar.affix,
   .bs-sidebar.affix-bottom {
-    width: 110px;
+    width: 190px;
   }
   .bs-sidebar.affix {
     position: fixed; /* Undo the static from mobile first approach */
@@ -161,7 +157,7 @@
   /* Widen the fixed sidebar again */
   .bs-sidebar.affix-bottom,
   .bs-sidebar.affix {
-    width: 120px;
+    width: 200px;
   }
 }
 
@@ -173,3 +169,39 @@ footer {
   text-align: center;
 }
 
+// =========================================
+// List Group
+// =========================================
+a.list-group-item:hover, 
+a.list-group-item:focus {
+  text-decoration:none;
+  color: #fff;
+  background: #D14836;
+  padding-left: 20px;
+}
+
+a.list-group-item:hover > * {
+  color: #fff;
+}
+
+.list-group-striped a:nth-child(odd) {
+  // background-color: #E0FFFF;
+}
+
+// =========================================
+// Tips
+// =========================================
+.tips-date {
+  color: gray;
+  font-size: 0.9em;
+  margin-top: 8px;
+}
+
+// =========================================
+// Post
+// =========================================
+.post .title {
+  border-bottom: solid gray 1px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}

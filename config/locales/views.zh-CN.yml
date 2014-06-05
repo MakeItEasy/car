@@ -4,6 +4,8 @@
       publish: 发布
       reject: 拒绝
       complete: 完成
+      pre_post: "上一篇："
+      next_post: "下一篇："
     notice:
       post:
         published: 文章发布成功.

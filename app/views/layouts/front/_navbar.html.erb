@@ -12,9 +12,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="<%= current_nav_class('index') %>"><%= link_to "主页", root_path %></li>
+            <li class="<%= current_nav_class(root_path) %>"><%= link_to "主页", root_path %></li>
             <% @catagories.each do |catagory|  %>
-              <li class="<%= current_nav_class('list_posts', catagory.id) %>">
+              <li class="<%= current_nav_class(catagory_path(catagory)) %>">
                 <%= link_to catagory.name, catagory_path(catagory) %>
               </li>
             <% end %>

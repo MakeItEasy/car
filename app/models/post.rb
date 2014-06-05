@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
 
   extend Enumerize
 
-  default_scope { order(created_at: :desc) }
+  default_scope { order(updated_at: :desc) }
 
   ## Scopes
   scope :draft, -> { with_status(:draft) }
@@ -21,5 +21,21 @@ class Post < ActiveRecord::Base
   ## Associations
   belongs_to :admin, foreign_key: :create_user_id
   belongs_to :catagory
+
+  # 前一篇已发布文章
+  def pre_published_post
+    Post.published
+      .where("updated_at < :updated_at and catagory_id = :catagory_id",
+             {updated_at: self.updated_at, catagory_id: self.catagory_id})
+      .first
+  end
+
+  # 后一篇已发布文章
+  def next_published_post
+    Post.published
+      .where("updated_at > :updated_at and catagory_id = :catagory_id",
+             {updated_at: self.updated_at, catagory_id: self.catagory_id})
+      .last
+  end
 
 end

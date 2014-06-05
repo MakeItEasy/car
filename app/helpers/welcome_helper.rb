@@ -1,14 +1,10 @@
 module WelcomeHelper
-  def current_nav_class(action, catagory_id = nil)
-    # TODO dairg 使用path进行比较
-    if params[:controller] == "welcome"
-      if params[:action] == action
-        if catagory_id.present? 
-          return (catagory_id.to_s == params[:catagory_id] ? 'active' : '')
-        else
-          return 'active'
-        end
-      end
+  def current_nav_class(path)
+    current_path = request.original_fullpath
+    if path == '/'
+      current_path == path ? 'active' : ''
+    else
+      current_path.start_with?(path) ? 'active' : ''
     end
   end
 end

@@ -1,26 +1,31 @@
-class WelcomeController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-
-  layout "front"
-
+class WelcomeController < FrontBaseController
   ## 主页
   def index
-    @catagories = Catagory.all
+    set_nav_field
   end
 
   ## 文章列表页
   def list_posts
-    @catagories = Catagory.all
+    set_nav_field
     @catagory = Catagory.find(params[:catagory_id])
     # TODO dairg 404共通页面处理
-    
   end
 
   ## 文章明细页
   def show_post
-    @catagories = Catagory.all
+    set_nav_field
+    @catagory = Catagory.find(params[:catagory_id])
+    @post = Post.find(params[:post_id])
+    # 如果post不是发布状态，那么返回404
+    raise ActiveRecord::RecordNotFound unless @post.status_published?
+    @pre_post = @post.pre_published_post
+    @next_post = @post.next_published_post
+  end
+
+  ## 预约
+  # TODO dairg 暂时放到这里
+  def order
+    set_nav_field
   end
 
 end

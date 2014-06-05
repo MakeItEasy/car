@@ -16,7 +16,7 @@ ActiveAdmin.register Post do
   end
 
   ## Scopes
-  # TODO dairg I18n
+  # TODO dairg I18n , 排序不对按照ID默认
   scope :all
   scope :draft
   scope :waiting
@@ -70,7 +70,7 @@ ActiveAdmin.register Post do
         I18n.l(post.created_at)
       end
       row :updated_at do
-        I18n.l(post.created_at)
+        I18n.l(post.updated_at)
       end
     end
 
