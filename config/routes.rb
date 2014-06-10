@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'catagory/:catagory_id' => 'welcome#list_posts', as: :catagory
   get 'catagory/:catagory_id/post/:post_id' => 'welcome#show_post', as: :post
-  get 'order' => 'welcome#order', as: :order
+  get 'station/:id/order' => 'station#order', as: :order
+  # TODO dairg delete
+  get 'station/:id/step/:type' => 'station#step', as: :step
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
