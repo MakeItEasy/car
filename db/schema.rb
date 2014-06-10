@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528232707) do
+ActiveRecord::Schema.define(version: 20140610005323) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -115,5 +115,22 @@ ActiveRecord::Schema.define(version: 20140528232707) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "stations", force: true do |t|
+    t.string   "name",       default: "", null: false
+    t.string   "province",                null: false
+    t.string   "city",                    null: false
+    t.string   "district",                null: false
+    t.string   "address",    default: "", null: false
+    t.string   "telephone",  default: "", null: false
+    t.text     "recommend"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stations", ["city"], name: "index_stations_on_city", using: :btree
+  add_index "stations", ["district"], name: "index_stations_on_district", using: :btree
+  add_index "stations", ["name"], name: "index_stations_on_name", unique: true, using: :btree
+  add_index "stations", ["province"], name: "index_stations_on_province", using: :btree
 
 end
