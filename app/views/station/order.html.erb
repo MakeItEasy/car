@@ -33,16 +33,16 @@
         <div class="left-box action">
           <% if @current_step == 'confirmation' %>
             <div style="text-align: center;">
-              <a href="<%= step_path(:next)%>" class="btn btn-danger btn-lg">提交预约信息</a>
+              <a href="<%= step_path(1, :next)%>" class="btn btn-danger btn-lg">提交预约信息</a>
             </div>
           <% elsif @current_step == 'success' %>
             <div style="text-align: center;">
-            <a href="<%= step_path(:pre)%>" class="btn btn-success">打印</a>
+            <a href="<%= step_path(1, :pre)%>" class="btn btn-success">打印</a>
             <a class="btn btn-success">发送信息到手机</a>
           </div>
           <% else %>
-            <a href="<%= step_path(:pre)%>" class="btn btn-default pull-left">上一步</a>
-            <a href="<%= step_path(:next)%>" class="btn btn-primary btn-lg pull-right">下一步</a>
+            <a href="<%= step_path(1, :pre)%>" class="btn btn-default pull-left">上一步</a>
+            <a href="<%= step_path(1, :next)%>" class="btn btn-primary btn-lg pull-right">下一步</a>
           <% end %>
           <div class="clearfix"></div>
         </div>
