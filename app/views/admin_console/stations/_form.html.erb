@@ -1,0 +1,35 @@
+<%= semantic_form_for [:admin_console, @station] do |f| %>
+  <%= f.inputs t('views.labels.basic_info'), input_html: {class: ''} do %>
+    <%= f.input :name %>
+
+    <li class="select input required city-group">
+      <label class="label" for="station_province">选择省市地区
+        <abbr title="必须的">*</abbr>
+      </label>
+      <select class="city-select" id="station_province" name="station[province]">
+        <option value=""><%= t('views.labels.option_for_china_city',
+          text: Station.human_attribute_name(:province)) %></option>
+        <%= options_for_select(ChinaCity.list, @station.province) %>
+      </select>
+      <select class="city-select" id="station_city" name="station[city]">
+        <option value=""><%= t('views.labels.option_for_china_city',
+          text: Station.human_attribute_name(:city)) %></option>
+        <%= options_for_select(ChinaCity.list(@station.province), @station.city) %>
+      </select>
+      <select class="city-select" id="station_district" name="station[district]">
+        <option value=""><%= t('views.labels.option_for_china_city',
+          text: Station.human_attribute_name(:district)) %></option>
+        <%= options_for_select(ChinaCity.list(@station.city), @station.district) %>
+      </select>
+      <%= f.semantic_errors :province, :city, :district %>
+    </li>
+
+    <%= f.input :address %>
+    <%= f.input :telephone %>
+    <%= f.input :recommend%>
+  <% end %>
+  <%= f.actions do %>
+    <%= f.action :submit %>
+    <li class="cancel"><%= link_to 'Cancel', collection_path %></li>
+  <% end %>
+<% end %>

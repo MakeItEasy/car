@@ -7,6 +7,14 @@ class CreateStations < ActiveRecord::Migration
       t.string :district, null: false
       t.string :address, null: false, default: ""
       t.string :telephone, null: false, default: ""
+      # 状态
+      t.string :status, null: false
+      # 审核者
+      t.integer :check_user_id
+      # 拒绝理由
+      t.text :reject_reason
+      # 锁定者
+      t.integer :lock_user_id
       t.text :recommend
 
       t.timestamps

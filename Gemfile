@@ -54,3 +54,4 @@ gem "paperclip", "~> 4.1"
 gem 'activesupport-json_encoder'
 
 gem 'bootstrap-sass'
+gem 'china_city'

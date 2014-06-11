@@ -41,9 +41,7 @@ ActiveAdmin.setup do |config|
   # a namespace block. For example, to change the site title
   # within a namespace:
   #
-  #   config.namespace :admin do |admin|
-  #     admin.site_title = "Custom Admin Title"
-  #   end
+  config.default_namespace = :admin_console
 
   # This will ONLY change the title for the admin section. Other
   # namespaces will continue to use the main "site_title" configuration.
@@ -242,4 +240,24 @@ ActiveAdmin.setup do |config|
   #
   # config.filters = true
 
+  config.namespace :admin_console do |admin|
+    admin.build_menu :utility_navigation do |menu|
+      menu.add :label => proc{current_admin.name}, id: "nav_current_admin", html_options: {class: ""} do |lists|
+        lists.add :label => "修改个人信息",
+                  :url => proc{modify_personal_info_admin_console_admin_path(current_admin)},
+                  :html_options => { }
+        lists.add :label => "修改密码",
+                  :url => proc{modify_password_admin_console_admin_path(current_admin)},
+                  :html_options => { }
+      end
+
+      # logout link
+      admin.add_logout_button_to_menu menu, 100
+    end
+  end
+
+end
+
+module ActiveAdmin::ViewHelpers
+  include ActiveAdminHelper
 end

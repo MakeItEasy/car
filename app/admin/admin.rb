@@ -28,4 +28,38 @@ ActiveAdmin.register Admin do
     f.actions
   end
 
+  ## Controller 
+  controller do
+  end
+
+  # 修改个人信息Action
+  member_action :modify_personal_info, method: [:post, :get] do
+    admin = Admin.find(params[:id])
+    authorize! :modify_personal_info, admin
+    if request.post?
+    else
+      render 'modify_personal_info'
+    end
+  end
+
+  # 修改密码Action
+  member_action :modify_password, method: [:patch, :get] do
+    @admin = Admin.find(params[:id])
+    authorize! :modify_password, @admin
+    if request.patch?
+      attributes = {password: params[:admin][:password],
+                    password_confirmation: params[:admin][:password_confirmation]}
+      if @admin.update_attributes(attributes)
+        # TODO dairg
+        if @admin.id == current_admin.id
+          sign_in(Admin.find(current_admin.id), :bypass => true)
+        end
+        redirect_to admin_console_root_path, notice: I18n.t("views.notice.admin.modify_password_success")
+      else
+        render 'modify_password'
+      end
+    else
+      render 'modify_password'
+    end
+  end
 end

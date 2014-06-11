@@ -1,0 +1,24 @@
+//====================================================
+// 省市区联动关联
+//====================================================
+ol.city-group > li p.inline-errors {
+  color: #932419;
+  font-weight: bold;
+  margin: 0.3em 0 0 20%;
+}
+
+ol.city-group  {
+  // display: inline-block;
+  // display: table-cell;
+
+}
+
+//====================================================
+// 修改个人信息菜单
+//====================================================
+#header ul.tabs > #nav_current_admin > ul {
+  min-width: 105px;
+  li {
+    text-align: left;
+  }
+}

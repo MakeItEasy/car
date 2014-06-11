@@ -35,6 +35,7 @@ class AdminAbility
 
     if user.is_superadmin?
       # 超级管理员
+      # TODO dairg 不要用manage all，而是吧每个权限都细标出来
       can :manage, :all
     else
       # TODO dairg QA 版主和编辑的责任划分
@@ -69,8 +70,27 @@ class AdminAbility
     can [:read, :create], Ckeditor::Picture
     can [:read, :create], Ckeditor::AttachmentFile
 
-    can :show, Admin, :id => user.id
-    can :update, Admin, :id => user.id
+    # can :show, Admin, :id => user.id
+    # can :update, Admin, :id => user.id
+    # 修改密码
+    can :modify_personal_info, Admin, :id => user.id
+    can :modify_password, Admin, :id => user.id
+
     can :read, ActiveAdmin::Page, :name => "Dashboard"
   end
 end
+
+=begin
+权限一览
+  ## station
+  can :review, Station, :status => "waiting"
+  can :reject, Station, :status => "waiting"
+  can :lock, Station, :status => "reviewed"
+  can :unlock, Station, :status => "locked"
+
+  ## posts
+  can :publish, Post, :status => "waiting"
+  can :reject, Post, :status => "waiting"
+  can :lock, Post, :status => "published"
+  can :complete, Post, :create_user_id => user.id, :status => "draft"
+=end

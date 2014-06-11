@@ -2,14 +2,14 @@ class Post < ActiveRecord::Base
 
   extend Enumerize
 
-  default_scope { order(updated_at: :desc) }
-
   ## Scopes
+  default_scope { order(updated_at: :desc) }
   scope :draft, -> { with_status(:draft) }
   scope :waiting, -> { with_status(:waiting) }
   scope :published, -> { with_status(:published) }
   scope :rejected, -> { with_status(:rejected) }
   scope :locked, -> { with_status(:locked) }
+  scope :default_order, -> { order(updated_at: :desc) }
 
   ## Validates
   validates :title, presence: true, length: { maximum: 30 }

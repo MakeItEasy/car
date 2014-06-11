@@ -16,13 +16,24 @@ ActiveAdmin.register Post do
   end
 
   ## Scopes
-  # TODO dairg I18n , 排序不对按照ID默认
-  scope :all
-  scope :draft
-  scope :waiting
-  scope :published
-  scope :rejected
-  scope :locked
+  scope :all do |members|
+    members.unscoped.default_order
+  end
+  scope :draft do |members|
+    members.unscoped.draft.default_order
+  end
+  scope :waiting do |members|
+    members.unscoped.waiting.default_order
+  end
+  scope :published do |members|
+    members.unscoped.published.default_order
+  end
+  scope :rejected do |members|
+    members.unscoped.rejected.default_order
+  end
+  scope :locked do |members|
+    members.unscoped.locked.default_order
+  end
  
   ## 过滤条件
   filter :title
@@ -90,9 +101,9 @@ ActiveAdmin.register Post do
     if post.status_draft?
       # TODO dairg I18n
       post.update_attributes!({status: 'waiting'})
-      redirect_to admin_post_path(post), notice: I18n.t("views.notice.post.completed")
+      redirect_to admin_console_post_path(post), notice: I18n.t("views.notice.post.completed")
     else
-      redirect_to admin_post_path(post), alert: I18n.t("views.alert.post.status_error")
+      redirect_to admin_console_post_path(post), alert: I18n.t("views.alert.post.status_error")
     end
   end
 
@@ -102,9 +113,9 @@ ActiveAdmin.register Post do
     authorize! :publish, post
     if post.status_waiting?
       post.update_attributes!({status: 'published', check_user_id: current_admin.id})
-      redirect_to admin_post_path(post), notice: I18n.t("views.notice.post.published")
+      redirect_to admin_console_post_path(post), notice: I18n.t("views.notice.post.published")
     else
-      redirect_to admin_post_path(post), alert: I18n.t("views.alert.post.status_error")
+      redirect_to admin_console_post_path(post), alert: I18n.t("views.alert.post.status_error")
     end
   end
 
@@ -115,9 +126,9 @@ ActiveAdmin.register Post do
     if post.status_waiting?
       # TODO dairg 使用model box，填写理由
       post.update_attributes!({status: 'rejected', check_user_id: current_admin.id})
-      redirect_to admin_post_path(post), notice: I18n.t("views.notice.post.rejected")
+      redirect_to admin_console_post_path(post), notice: I18n.t("views.notice.post.rejected")
     else
-      redirect_to admin_post_path(post), alert: I18n.t("views.alert.post.status_error")
+      redirect_to admin_console_post_path(post), alert: I18n.t("views.alert.post.status_error")
     end
   end
 
@@ -127,27 +138,27 @@ ActiveAdmin.register Post do
     authorize! :lock, post
     if post.status_published?
       post.update_attributes!({status: 'locked', lock_user_id: current_admin.id})
-      redirect_to admin_post_path(post), notice: I18n.t("views.notice.post.locked")
+      redirect_to admin_console_post_path(post), notice: I18n.t("views.notice.post.locked")
     else
-      redirect_to admin_post_path(post), alert: I18n.t("views.alert.post.status_error")
+      redirect_to admin_console_post_path(post), alert: I18n.t("views.alert.post.status_error")
     end
   end
 
   ## Show页面的动作
   action_item only: :show do 
-    link_to I18n.t("views.action.complete"), complete_admin_post_path(post), method: :post if authorized?(:complete, post)
+    link_to I18n.t("views.action.complete"), complete_admin_console_post_path(post), method: :post if authorized?(:complete, post)
   end
 
   action_item only: :show do 
-    link_to I18n.t("views.action.publish"), publish_admin_post_path(post), method: :post if authorized?(:publish, post)
+    link_to I18n.t("views.action.publish"), publish_admin_console_post_path(post), method: :post if authorized?(:publish, post)
   end
 
   action_item only: :show do 
-    link_to I18n.t("views.action.reject"), publish_admin_post_path(post), method: :post if authorized?(:reject, post)
+    link_to I18n.t("views.action.reject"), publish_admin_console_post_path(post), method: :post if authorized?(:reject, post)
   end
 
   action_item only: :show do 
-    link_to I18n.t("views.action.lock"), publish_admin_post_path(post), method: :post if authorized?(:lock, post)
+    link_to I18n.t("views.action.lock"), publish_admin_console_post_path(post), method: :post if authorized?(:lock, post)
   end
   
   # See permitted parameters documentation:

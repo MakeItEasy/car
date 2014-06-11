@@ -117,12 +117,16 @@ ActiveRecord::Schema.define(version: 20140610005323) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "stations", force: true do |t|
-    t.string   "name",       default: "", null: false
-    t.string   "province",                null: false
-    t.string   "city",                    null: false
-    t.string   "district",                null: false
-    t.string   "address",    default: "", null: false
-    t.string   "telephone",  default: "", null: false
+    t.string   "name",          default: "", null: false
+    t.string   "province",                   null: false
+    t.string   "city",                       null: false
+    t.string   "district",                   null: false
+    t.string   "address",       default: "", null: false
+    t.string   "telephone",     default: "", null: false
+    t.string   "status",                     null: false
+    t.integer  "check_user_id"
+    t.text     "reject_reason"
+    t.integer  "lock_user_id"
     t.text     "recommend"
     t.datetime "created_at"
     t.datetime "updated_at"
