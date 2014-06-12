@@ -20,16 +20,22 @@ ActiveAdmin.register Admin do
       f.input :email
       f.input :name
       f.input :telephone
-      # f.input :password
-      # f.input :password_confirmation
       # TODO dairg 管理员角色显示汉字
       f.input :roles
+    end
+    f.inputs "密码信息" do
+      f.input :password
+      f.input :password_confirmation
     end
     f.actions
   end
 
   ## Controller 
   controller do
+    def update_resource(object, attributes)
+      update_method = attributes.first[:password].present? ? :update_attributes : :update_without_password
+      object.send(update_method, *attributes)
+    end
   end
 
   # 修改个人信息Action
