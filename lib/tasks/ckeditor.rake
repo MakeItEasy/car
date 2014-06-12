@@ -1,4 +1,8 @@
 # copy from https://gist.github.com/markbao/6431880
+# usefull links
+# https://github.com/alexspeller/non-stupid-digest-assets
+# https://github.com/galetahub/ckeditor/issues/307
+# https://github.com/galetahub/ckeditor
 require 'fileutils'
  
 desc "Create nondigest versions of all ckeditor digest assets"
