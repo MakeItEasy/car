@@ -35,7 +35,7 @@
 }
 
 .step1, .step2, .step3, .step4 {
-  background: url(/assets/steps.png) no-repeat;
+  background: asset-url("steps.png") no-repeat;
 }
 
 .payStep02 .step1,
