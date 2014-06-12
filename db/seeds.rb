@@ -30,7 +30,7 @@ Admin.transaction do
                 password: 'password',
                 password_confirmation: 'password', telephone: '15100000000')
   # 编辑
-  moderatorAdmin.add_role "editor"
+  editorAdmin.add_role "editor"
   puts "Admin done"
 end
 
