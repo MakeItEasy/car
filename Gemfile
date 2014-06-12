@@ -55,3 +55,5 @@ gem 'activesupport-json_encoder'
 
 gem 'bootstrap-sass'
 gem 'china_city'
+
+gem 'capistrano', '~> 3.2.0'
