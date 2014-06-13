@@ -1,5 +1,6 @@
 ActiveAdmin.register Admin do
-  permit_params :email, :password, :password_confirmation, :name
+  # TODO dairg roles not saved
+  permit_params :email, :password, :password_confirmation, :name, :telephone, roles: []
 
   index do
     selectable_column
