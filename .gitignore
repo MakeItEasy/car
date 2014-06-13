@@ -49,3 +49,7 @@ pickle-email-*.html
 /config/database.*
 
 /config/secrets.yml
+/Capfile
+/config/deploy.rb
+/config/deploy/
+
